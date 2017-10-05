@@ -1,0 +1,2 @@
+[checkbook-web]
+checkbook ansible_ssh_port=2232 ansible_ssh_host=localhost ansible_ssh_user=ubuntu

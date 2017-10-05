@@ -1,0 +1,48 @@
+version: '2'
+services:
+  checkbookdb:
+    container_name: checkbook_db
+    image: mysql
+    volumes:
+      - "./.data/db:/var/lib/mysql"
+    restart: always
+    ports:
+      - "3373:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: checkbook
+      MYSQL_USER: checkbook
+      MYSQL_PASSWORD: superpassword
+
+  checkbook:
+    container_name: checkbook_web
+    volumes:
+          - "./Checkbook:/checkbook"
+          - "./Checkbook/source/webapp:/var/www/html"
+    image: checkbook
+    depends_on:
+      - checkbookdb
+    links:
+      - checkbookdb
+    ports:
+      - "8808:80"   #http
+      - "2232:22"   #ssh
+      - "9001:9000" #xdebug
+    restart: always
+
+
+#  checkbook-php5:
+#    container_name: checkbook_web_php5
+#    volumes:
+#          - "./Checkbook:/checkbook"
+#          - "./Checkbook/source/webapp:/var/www/html"
+#    image: checkbook-php5
+#    depends_on:
+#      - checkbookdb
+#    links:
+#      - checkbookdb
+#    ports:
+#      - "8809:80"   #http
+#      - "2322:22"   #ssh
+#      - "9002:9000" #xdebug
+#    restart: always

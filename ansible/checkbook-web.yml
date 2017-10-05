@@ -1,0 +1,18 @@
+--- # checkbook web
+
+- name: Provisioning checkbook web
+  hosts: checkbook-web
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+
+  roles:
+  - { role: init, tags: [provision] }
+
+  - { role: geerlingguy.nginx, tags: [provision] }
+  - { role: geerlingguy.php, tags: [php, provision] }
+  - { role: geerlingguy.php-mysql, tags: [php, php-mysql, provision] }
+  - { role: geerlingguy.php-memcached, tags: [php, php-memcached, provision] }
+
+  - { role: nginx, tags: [provision] }
+  - { role: app, tags: [provision, deploy] }

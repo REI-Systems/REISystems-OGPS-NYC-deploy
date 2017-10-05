@@ -1,0 +1,21 @@
+--- # Nginx
+
+- name: Mkdir /var/www/
+  file:
+    path: "/var/www"
+    state: directory
+    owner: "www-data"
+    group: "www-data"
+    mode: 0777
+
+- name: Check checkbook html symlink
+  file:
+    dest: "{{ project_index_path }}"
+    state: link
+    src: /checkbook/source/webapp
+
+
+- name: Copying checkbook nginx configuration
+  template:
+    src: "nginx.conf"
+    dest: "/etc/nginx/sites-enabled/checkbook.nginx.conf"
