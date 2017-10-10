@@ -1,5 +1,7 @@
 # REISystems-OGPS-NYC-deploy
 
+[![CircleCI](https://circleci.com/gh/REI-Systems/REISystems-OGPS-NYC-deploy.svg?style=svg)](https://circleci.com/gh/REI-Systems/REISystems-OGPS-NYC-deploy)
+
 ## Development with [Docker for Mac](https://www.docker.com/products/docker)
 - Prepare the code
     - `git clone git@github.com:NYCComptroller/Checkbook.git`
