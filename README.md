@@ -38,6 +38,8 @@ All the modifications you do within Checkbook folder are applied immediately to 
 
 ## Other
 
+- To get a `phpmyadmin`, run `docker run --name nyc_admin -d -e PMA_HOST=docker.for.mac.localhost -e PMA_PORT=3373 -e PMA_USER=checkbook -e PMA_PASSWORD=superpassword -p 8989:80 phpmyadmin/phpmyadmin`, then open [http://localhost:8989](http://localhost:8989) in your browser
+
 - To update ansible vendor dependencies:
 
     - `(cd ansible/roles/vendor && ansible-galaxy install -r requirements.yml)`

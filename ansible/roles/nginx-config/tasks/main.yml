@@ -6,7 +6,7 @@
     state: directory
     owner: "www-data"
     group: "www-data"
-    mode: 0777
+    mode: 0755
 
 - name: Check checkbook html symlink
   file:
@@ -14,8 +14,10 @@
     state: link
     src: /checkbook/source/webapp
 
-
 - name: Copying checkbook nginx configuration
   template:
     src: "nginx.conf"
     dest: "/etc/nginx/sites-enabled/checkbook.nginx.conf"
+  notify:
+    - restart php7.0-fpm
+    - restart nginx

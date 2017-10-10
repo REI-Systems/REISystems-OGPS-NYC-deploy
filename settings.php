@@ -216,8 +216,8 @@ $databases = array(
             'default' =>
                 array(
                     'database' => 'checkbook',
-                    'username' => 'root',
-                    'password' => 'password',
+                    'username' => 'checkbook',
+                    'password' => 'superpassword',
                     'host' => 'checkbook_db',
                     'port' => '',
                     'driver' => 'mysql',

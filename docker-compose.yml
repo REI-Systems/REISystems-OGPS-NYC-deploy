@@ -18,7 +18,6 @@ services:
     container_name: checkbook_web
     volumes:
           - "./Checkbook:/checkbook"
-          - "./Checkbook/source/webapp:/var/www/html"
     image: checkbook
     depends_on:
       - checkbookdb

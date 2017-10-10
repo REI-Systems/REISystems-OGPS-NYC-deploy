@@ -14,5 +14,4 @@
   - { role: geerlingguy.php-mysql, tags: [php, php-mysql, provision] }
   - { role: geerlingguy.php-memcached, tags: [php, php-memcached, provision] }
 
-  - { role: nginx, tags: [provision] }
-  - { role: app, tags: [provision, deploy] }
+  - { role: nginx-config, tags: [provision] }
