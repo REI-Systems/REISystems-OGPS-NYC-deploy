@@ -15,3 +15,4 @@
   - { role: geerlingguy.php-memcached, tags: [php, php-memcached, provision] }
 
   - { role: nginx-config, tags: [provision] }
+  - { role: fixes, tags: [provision] }

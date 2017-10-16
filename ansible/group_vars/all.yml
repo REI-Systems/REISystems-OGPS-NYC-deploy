@@ -8,6 +8,7 @@ nginx_remove_default_vhost: true
 # PHP-FPM
 php_enable_php_fpm: true
 php_webserver_daemon: nginx
+php_opcache_conf_filename: "10-opcache.ini"
 
 # Disabling MySQL server (we need only client on this machine)
 mysql_enabled_on_startup: false

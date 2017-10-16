@@ -1,0 +1,7 @@
+--- # Final fixes
+
+- name: Set default php-cli to 7.0
+  file:
+    src: /usr/bin/php7.0
+    dest: /usr/bin/php
+    state: link
