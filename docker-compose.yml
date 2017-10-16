@@ -26,7 +26,6 @@ services:
     ports:
       - "8808:80"   #http
       - "2232:22"   #ssh
-      - "9001:9000" #xdebug
     restart: always
 
 

@@ -21,9 +21,15 @@
   package: name={{ item }} state=installed
   with_items:
     - vim
+    - tmux
     - php7.0-zip
     - php7.0-intl
     - php7.0-pgsql
-    - php-xdebug
     - nginx-extras
     - mysql-client
+
+- name: Installing php-xdebug if needed
+  package: name={{ item }} state=installed
+  with_items:
+    - php-xdebug
+  when: php_xdebug_enabled
