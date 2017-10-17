@@ -6,16 +6,24 @@
     dest: /usr/bin/php
     state: link
 
-- name: Set up xDebug remote_enable on Docker for Mac
+- name: Configure php-fpm pool
   lineinfile:
-    path: /etc/php/7.0/mods-available/xdebug.ini
-    regexp: '^xdebug.remote_enable='
-    line: 'xdebug.remote_enable=on'
-  when: php_xdebug_enabled
+    dest: "/etc/php/7.0/fpm/pool.d/www.conf"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - regexp: "^.?request_terminate_timeout.?=.+$"
+      line: "request_terminate_timeout={{ php_fpm_request_terminate_timeout }}"
 
-- name: Set up xDebug remote_hostname on Docker for Mac
+- name: Set up xDebug on Docker for Mac
   lineinfile:
     path: /etc/php/7.0/mods-available/xdebug.ini
-    regexp: '^xdebug.remote_hostname='
-    line: 'xdebug.remote_hostname=docker.for.mac.localhost'
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - regexp: '^xdebug.remote_enable='
+      line: 'xdebug.remote_enable=on'
+    - regexp: '^xdebug.remote_hostname='
+      line: 'xdebug.remote_hostname=docker.for.mac.localhost'
   when: php_xdebug_enabled
