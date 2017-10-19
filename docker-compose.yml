@@ -18,6 +18,7 @@ services:
     container_name: checkbook_web
     volumes:
           - "./Checkbook:/checkbook"
+          - "./drupal-log:/var/log/drupal"
     image: checkbook
     depends_on:
       - checkbookdb

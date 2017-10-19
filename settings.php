@@ -147,7 +147,7 @@
  *     'authmap'   => 'shared_',
  *   ),
  * @endcode
- * You can also use a reference to a schema/database as a prefix. This may be
+ * You can also use a reference to a schema/database as a prefix. This maybe
  * useful if your Drupal installation exists in a schema that is not the default
  * or you want to access several databases from the same code base at the same
  * time.
@@ -210,11 +210,11 @@
  *   );
  * @endcode
  */
-$databases = array(
+$databases = array (
     'default' =>
-        array(
+        array (
             'default' =>
-                array(
+                array (
                     'database' => 'checkbook',
                     'username' => 'checkbook',
                     'password' => 'superpassword',
@@ -228,7 +228,7 @@ $databases = array(
         array (
             'main' =>
                 array (
-                    'database' => 'checkbook',
+                    'database' => 'checkbook_dev',
                     'username' => 'webuser1',
                     'password' => 'webuser1',
                     'host' => '192.168.3.24',
@@ -307,7 +307,7 @@ $update_free_access = FALSE;
  *   $drupal_hash_salt = file_get_contents('/home/example/salt.txt');
  *
  */
-$drupal_hash_salt = '';
+$drupal_hash_salt = 'I8slT_fBMEFboM4TKNFgetVZgTAzBA1Br8LecFCAuAw';
 
 /**
  * Base URL (optional).
@@ -482,6 +482,38 @@ ini_set('session.cookie_lifetime', 2000000);
  */
 # $conf['omit_vary_cookie'] = TRUE;
 
+
+/**
+ * Add Memcached Caching.
+ */
+/*
+$conf['cache_backends'][] = 'sites/all/modules/contrib/memcache/memcache.inc';
+$conf['cache_default_class'] = 'MemCacheDrupal';
+$conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
+$conf['memcache_servers'] = array(
+    'localhost:8888' => 'default',
+);
+$conf['memcache_bins'] = array('cache' => 'default',);
+$conf['memcache_key_prefix'] = 'checkbook-';
+*/
+
+$conf['cache_backends'][] = 'sites/all/modules/contrib/memcache/memcache.inc';
+$conf['cache_default_class'] = 'MemCacheDrupal';
+$conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
+$conf['memcache_servers'] = array(
+    'localhost:11211' => 'default',
+);
+$conf['memcache_bins'] = array(
+    'cache' => 'default',
+    'cache_pages' => 'default',
+    'cache_filter' => 'default',
+    'cache_menu' => 'default',
+    'session' => 'default',
+    'users' => 'default',
+    );
+$conf['memcache_key_prefix'] = 'checkbook-';
+
+
 /**
  * CSS/JS aggregated file gzip compression:
  *
@@ -555,7 +587,7 @@ ini_set('session.cookie_lifetime', 2000000);
  */
 $conf['404_fast_paths_exclude'] = '/\/(?:styles)\//';
 $conf['404_fast_paths'] = '/\.(?:txt|png|gif|jpe?g|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp)$/i';
-$conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL "@path" was not found on this server.</p></body></html>';
+$conf['404_fast_html'] = '<html xmlns="http://www.w3.org/1999/xhtml"><head><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL "@path" was not found on this server.</p></body></html>';
 
 /**
  * By default the page request process will return a fast 404 page for missing
@@ -616,3 +648,24 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
  * Remove the leading hash signs to disable.
  */
 # $conf['allow_authorize_operations'] = FALSE;
+
+//****************CheckBook Project Settings*******
+
+//****************datafeeds************************
+//absolute directory path to store generated files on DB system
+//Make sure this directory exisits on DB system and
+//writable to configured datafeed user
+$conf['check_book']['data_feeds']['db_file_dir'] = '/data/datafeeds/dev';
+//relative directory path to 'sites/default/files' to store generated files
+$conf['check_book']['data_feeds']['output_file_dir'] = 'datafeeds/dev';
+$conf['check_book']['data_feeds']['command'] = 'PGPASSWORD=webuser1 psql -h 192.168.3.24 -U webuser1';
+$conf['check_book']['data_feeds']['site_url'] = 'http://localhost:8888';
+//Reference data outputDirectory
+$conf['check_book']['ref_data_dir'] = 'refdata';
+//Export data outputDirectory
+$conf['check_book']['export_data_dir'] = 'exportdata';
+//Solr URL
+$conf['check_book']['solr']['url'] = 'http://192.168.3.23:8983/solr/cb_collection_dev/';
+$conf['check_book']['datatables']['iTotalDisplayRecords'] = 200000;
+$conf['check_book']['tmpdir'] = '/Users/atorkelson/Workspace/Checkbook/source/webapp/sites/default/files/datafeeds/dev/exportdata/tmp';
+

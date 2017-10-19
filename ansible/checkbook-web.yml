@@ -7,12 +7,13 @@
   become_method: sudo
 
   roles:
-  - { role: init, tags: [provision] }
+  - { role: init, tags: [provision, init] }
 
   - { role: geerlingguy.nginx, tags: [provision] }
   - { role: geerlingguy.php, tags: [php, provision] }
   - { role: geerlingguy.php-mysql, tags: [php, php-mysql, provision] }
   - { role: geerlingguy.php-memcached, tags: [php, php-memcached, provision] }
+  - { role: geerlingguy.memcached, tags: [memcached, provision] }
 
   - { role: nginx-config, tags: [provision] }
   - { role: fixes, tags: [provision, fix] }

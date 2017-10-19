@@ -2,9 +2,17 @@
 
 - name: Set default php-cli to 7.0
   file:
-    src: /usr/bin/php7.0
-    dest: /usr/bin/php
+    src: "{{ item.src }}"
+    dest: "{{ item.symlink }}"
     state: link
+    force: yes
+  with_items:
+    - src: /usr/bin/php7.0
+      symlink: /etc/alternatives/php
+#    - src: /usr/lib/libphp7.so
+#      symlink: /etc/alternatives/libphp7
+#    - src: /usr/bin/php-config7.0
+#      symlink: /etc/alternatives/php
 
 - name: Configure php-fpm pool
   lineinfile:
@@ -24,6 +32,6 @@
   with_items:
     - regexp: '^xdebug.remote_enable='
       line: 'xdebug.remote_enable=on'
-    - regexp: '^xdebug.remote_hostname='
-      line: 'xdebug.remote_hostname=docker.for.mac.localhost'
+    - regexp: '^xdebug.remote_host='
+      line: 'xdebug.remote_host=docker.for.mac.localhost'
   when: php_xdebug_enabled

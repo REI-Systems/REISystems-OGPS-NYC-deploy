@@ -27,9 +27,22 @@
     - php7.0-pgsql
     - nginx-extras
     - mysql-client
+    - drush
 
 - name: Installing php-xdebug if needed
   package: name={{ item }} state=installed
   with_items:
     - php-xdebug
   when: php_xdebug_enabled
+
+#- name: Create drupal.log file dir
+#  file:
+#    path: /var/log/drupal
+#    state: directory
+#    mode: 0777
+
+- name: Create drupal.log file
+  file:
+    path: /var/log/drupal/drupal.log
+    state: touch
+    mode: 0666

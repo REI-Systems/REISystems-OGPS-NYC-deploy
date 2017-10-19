@@ -8,3 +8,4 @@
 - src: geerlingguy.php
 - src: geerlingguy.php-memcached
 - src: geerlingguy.php-mysql
+- src: geerlingguy.memcached
