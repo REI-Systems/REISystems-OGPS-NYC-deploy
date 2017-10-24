@@ -26,21 +26,23 @@
     
     - `mysql -h 127.0.0.1 -P 3373 -u checkbook -psuperpassword checkbook < checkbook_drupal*.sql`
     
-    - to test your machine try `ssh ubuntu@localhost -p 2232`
+    - open http://localhost:8989/ if you need a `phpmyadmin`
     
 - Deploy the app
     
     - `(cd ansible && ansible-playbook checkbook-web.yml)`
+        - If that won't work, test your ssh connection: 
+            - `ssh ubuntu@localhost -p 2232`
      
-- Open http://checkbook:8808/
+- Open http://localhost:8808/
 
-- To log in admin panel, go to http://checkbook:8808/user/login and try `admin`:`admin`
+- To log in admin panel, go to http://localhost:8808/user/login and try `admin`:`admin`
 
 All the modifications you do within Checkbook folder are applied immediately to Docker container app.
 
 ## Other
 
-- To get a `phpmyadmin`, run `docker run --name nyc_admin -d -e PMA_HOST=docker.for.mac.localhost -e PMA_PORT=3373 -e PMA_USER=checkbook -e PMA_PASSWORD=superpassword -p 8989:80 phpmyadmin/phpmyadmin`, then open [http://localhost:8989](http://localhost:8989) in your browser
+- To get a `phpmyadmin` manually, run `docker run --name checkbook_admin -d -e PMA_HOST=docker.for.mac.localhost -e PMA_PORT=3373 -e PMA_USER=checkbook -e PMA_PASSWORD=superpassword -p 8989:80 phpmyadmin/phpmyadmin`, then open [http://localhost:8989](http://localhost:8989) in your browser
 
 - To update ansible vendor dependencies:
 

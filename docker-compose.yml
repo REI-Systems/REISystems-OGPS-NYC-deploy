@@ -14,6 +14,21 @@ services:
       MYSQL_USER: checkbook
       MYSQL_PASSWORD: superpassword
 
+  checkbook_myadmin:
+    container_name: checkbook_myadmin
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - checkbookdb
+    links:
+      - checkbookdb
+    ports:
+      - "8989:80"   #http
+    environment:
+      PMA_HOST: checkbookdb
+      PMA_USER: checkbook
+      PMA_PASSWORD: superpassword
+    restart: always
+
   checkbook:
     container_name: checkbook_web
     volumes:
@@ -28,7 +43,6 @@ services:
       - "8808:80"   #http
       - "2232:22"   #ssh
     restart: always
-
 
 #  checkbook-php5:
 #    container_name: checkbook_web_php5

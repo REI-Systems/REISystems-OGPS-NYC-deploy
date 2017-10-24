@@ -10,4 +10,9 @@ then
     service php7.0-fpm start
 fi
 
+if [ -e /etc/init.d/memcached ]
+then
+    service memcached start
+fi
+
 /usr/sbin/sshd -D
