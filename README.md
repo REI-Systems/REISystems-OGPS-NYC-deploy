@@ -3,8 +3,13 @@
 [![CircleCI](https://circleci.com/gh/REI-Systems/REISystems-OGPS-NYC-deploy.svg?style=svg)](https://circleci.com/gh/REI-Systems/REISystems-OGPS-NYC-deploy)
 
 ## Development with [Docker for Mac](https://www.docker.com/products/docker)
+- Get [Docker for Mac](https://www.docker.com/products/docker)
+
+- Clone this repo
+    - `git clone git@github.com:REI-Systems/REISystems-OGPS-NYC-deploy.git checkbook && cd checkbook`
+
 - Prepare the code
-    - `git clone git@github.com:NYCComptroller/Checkbook.git`
+    - `git clone git@github.com:NYCComptroller/Checkbook.git Checkbook`
     
     - `wget http://code.highcharts.com/zips/Highcharts-4.0.4.zip && unzip Highcharts-4.0.4.zip -d Checkbook/source/webapp/sites/all/modules/custom/widget_framework/widget_highcharts/highcharts/4.0.4 && rm Highcharts-4.0.4.zip`
     
