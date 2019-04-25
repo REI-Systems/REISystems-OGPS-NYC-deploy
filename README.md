@@ -11,9 +11,9 @@
 - Prepare the code
     - `git clone git@github.com:NYCComptroller/Checkbook.git Checkbook`
     
-    - `wget http://code.highcharts.com/zips/Highcharts-4.0.4.zip && unzip Highcharts-4.0.4.zip -d Checkbook/source/webapp/sites/all/modules/custom/widget_framework/widget_highcharts/highcharts/4.0.4 && rm Highcharts-4.0.4.zip`
+    - `wget http://code.highcharts.com/zips/Highcharts-7.1.1.zip && unzip Highcharts-7.1.1.zip -d Checkbook/source/webapp/sites/all/modules/custom/widget_framework/widget_highcharts/highcharts/7.1.1 && rm Highcharts-7.1.1.zip`
     
-    - `wget http://code.highcharts.com/zips/Highstock-1.2.4.zip && unzip Highstock-1.2.4.zip -d Checkbook/source/webapp/sites/all/modules/custom/widget_framework/widget_highcharts/highstock/4.0.4 && rm Highstock-1.2.4.zip`
+    - `wget http://code.highcharts.com/zips/Highstock-7.1.1.zip && unzip Highstock-7.1.1.zip -d Checkbook/source/webapp/sites/all/modules/custom/widget_framework/widget_highcharts/highstock/7.1.1 && rm Highstock-7.1.1.zip`
     
     - `cp settings.php Checkbook/source/webapp/sites/default/`
     
